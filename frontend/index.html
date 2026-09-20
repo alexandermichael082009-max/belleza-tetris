@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Belleza Tetris - Salón de belleza y juego Tetris" />
+    <title>Belleza Tetris</title>
+    <link rel="stylesheet" href="./src/css/base.css" />
+    <link rel="stylesheet" href="./src/css/themes.css" />
+    <link rel="stylesheet" href="./src/css/layout.css" />
+    <link rel="stylesheet" href="./src/css/components.css" />
+    <link rel="stylesheet" href="./src/css/game.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1 class="app-header__title">Belleza Tetris</h1>
+      <nav class="app-nav" aria-label="Navegación principal">
+        <button class="app-nav__btn" data-route="home">Inicio</button>
+        <button class="app-nav__btn" data-route="appointments">Citas</button>
+        <button class="app-nav__btn" data-route="game">Juego</button>
+        <button class="app-nav__btn" data-route="scores">Puntuaciones</button>
+      </nav>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+    </header>
+
+    <main id="app-main" class="app-main">
+      <!-- Las vistas se inyectan aquí desde JS -->
+    </main>
+
+    <button id="chatbot-toggle" class="chatbot-toggle" aria-label="Abrir chat">💬</button>
+
+    <section id="chatbot-panel" class="chatbot-panel" hidden>
+      <header class="chatbot-panel__header">
+        <h2>Asistente Belleza</h2>
+        <button id="chatbot-voice-toggle" aria-label="Activar voz">🔊</button>
+        <button id="chatbot-close" aria-label="Cerrar chat">✖</button>
+      </header>
+      <ul id="chatbot-messages" class="chatbot-panel__messages"></ul>
+      <form id="chatbot-form" class="chatbot-panel__form">
+        <input
+          id="chatbot-input"
+          type="text"
+          placeholder="Escribe tu pregunta..."
+          autocomplete="off"
+          required
+        />
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <script type="module" src="./src/js/main.js"></script>
+  </body>
+</html>

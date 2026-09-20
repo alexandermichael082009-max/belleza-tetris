@@ -1,0 +1,29 @@
+/* Variables de color para modo claro y oscuro. */
+:root,
+[data-theme='light'] {
+  --color-bg: #fdf6f9;
+  --color-surface: #ffffff;
+  --color-primary: #d6336c;
+  --color-primary-soft: #f8c8dc;
+  --color-secondary: #7048e8;
+  --color-text: #2b2b2b;
+  --color-text-soft: #6b6b6b;
+  --color-border: #e9d5e0;
+  --color-success: #2f9e44;
+  --color-error: #e03131;
+  --shadow-soft: 0 4px 12px rgba(214, 51, 108, 0.15);
+}
+
+[data-theme='dark'] {
+  --color-bg: #14121a;
+  --color-surface: #1f1c2a;
+  --color-primary: #f06595;
+  --color-primary-soft: #3a2a3f;
+  --color-secondary: #9775fa;
+  --color-text: #f1f1f1;
+  --color-text-soft: #b8b8c0;
+  --color-border: #332e44;
+  --color-success: #51cf66;
+  --color-error: #ff6b6b;
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.5);
+}

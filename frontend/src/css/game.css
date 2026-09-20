@@ -1,0 +1,97 @@
+/* Estilos del canvas, HUD y menú del juego. */
+.game-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.game-canvas {
+  background: var(--color-surface);
+  border: 3px solid var(--color-primary);
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
+  touch-action: none;
+  max-width: 100%;
+  height: auto;
+}
+
+.game-hud {
+  display: flex;
+  gap: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.game-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.game-controls button {
+  padding: 0.6rem 1rem;
+  min-width: 48px;
+  border-radius: 10px;
+  background: var(--color-secondary);
+  color: #fff;
+  font-weight: 700;
+}
+
+.game-controls button:hover {
+  filter: brightness(1.15);
+}
+
+/* Menú del juego y fin de partida */
+.game-menu {
+  text-align: center;
+}
+
+.game-menu__title {
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.game-menu p {
+  color: var(--color-text-soft);
+  margin-bottom: 1rem;
+}
+
+.game-menu .rules {
+  list-style: disc;
+  text-align: left;
+  display: inline-block;
+  padding-left: 1.2rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-text-soft);
+}
+
+.game-over {
+  text-align: center;
+}
+
+.game-over__score {
+  font-size: 2rem;
+  color: var(--color-primary);
+  font-weight: 800;
+  margin: 0.5rem 0 1rem;
+}
+
+.game-over form {
+  margin: 1rem 0;
+}
+
+.game-over .leaderboard {
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.game-over .action-row {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}

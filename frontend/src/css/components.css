@@ -1,0 +1,197 @@
+/* Componentes reutilizables: botones, tarjetas, formularios, chatbot. */
+.app-nav__btn,
+.theme-toggle,
+.chatbot-toggle,
+.btn-primary {
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  background: var(--color-primary-soft);
+  color: var(--color-text);
+  font-weight: 600;
+  transition:
+    transform 0.15s ease,
+    background 0.2s ease;
+}
+
+.app-nav__btn:hover,
+.btn-primary:hover {
+  background: var(--color-primary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 1.25rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.form-field input,
+.form-field select {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.form-error {
+  color: var(--color-error);
+  font-size: 0.85rem;
+  min-height: 1rem;
+}
+
+.form-success {
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+/* Lista de precios del inicio */
+.home-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.home-services__item {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0.9rem;
+  text-align: center;
+}
+
+/* Lista de puntuaciones */
+.scores-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+}
+
+.scores-list__item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.8rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+/* Chatbot */
+.chatbot-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  background: var(--color-primary);
+  color: #fff;
+  z-index: 100;
+}
+
+.chatbot-panel {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 340px;
+  max-width: 92vw;
+  height: 460px;
+  max-height: 80vh;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  z-index: 101;
+  overflow: hidden;
+}
+
+.chatbot-panel[hidden] {
+  display: none;
+}
+
+.chatbot-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.chatbot-panel__messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.chatbot-message {
+  padding: 0.55rem 0.8rem;
+  border-radius: 12px;
+  max-width: 85%;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.chatbot-message--user {
+  align-self: flex-end;
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.chatbot-message--bot {
+  align-self: flex-start;
+  background: var(--color-primary-soft);
+  color: var(--color-text);
+}
+
+.chatbot-panel__form {
+  display: flex;
+  border-top: 1px solid var(--color-border);
+}
+
+.chatbot-panel__form input {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  background: var(--color-bg);
+  color: var(--color-text);
+  outline: none;
+}
+
+.chatbot-panel__form button {
+  padding: 0 1rem;
+  background: var(--color-primary);
+  color: #fff;
+}
+
+@media (max-width: 480px) {
+  .chatbot-panel {
+    width: 92vw;
+    height: 70vh;
+  }
+}
