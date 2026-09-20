@@ -1,0 +1,25 @@
+{
+  "name": "belleza-tetris-backend",
+  "version": "1.0.0",
+  "description": "API REST del proyecto Belleza Tetris (salón de belleza + Tetris).",
+  "main": "server.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "lint": "eslint server.js src",
+    "format": "prettier --write server.js \"src/**/*.js\""
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.3"
+  }
+}
