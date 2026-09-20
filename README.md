@@ -121,7 +121,7 @@ El botón **🌙 / ☀️** del encabezado cambia entre tema claro y oscuro. La 
 
 Para que el historial refleje ambos integrantes, configurar los dos autores locales y alternar `user.name`/`user.email` al hacer commits:
 
-> El repositorio local ya contiene commits de ambos autores: **Michael** (estructura y frontend) y **Jockabet** (backend). El ejemplo siguiente solo ilustra el flujo para nuevos commits.
+> El repositorio local ya contiene commits de ambos autores: **Michael** (estructura y frontend) y **Jocabeth** (backend). El ejemplo siguiente solo ilustra el flujo para nuevos commits.
 
 ```bash
 git init
