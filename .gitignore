@@ -1,0 +1,32 @@
+# Dependencias
+node_modules/
+
+# Variables de entorno
+.env
+.env.local
+backend/.env
+
+# Base de datos local (SQLite)
+backend/data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Prototipo antiguo (fuera del proyecto)
+_legacy/
+
+# Logs
+*.log
+
+# Configuracion de editores
+.vscode/
+.idea/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Builds y cobertura
+dist/
+coverage/
