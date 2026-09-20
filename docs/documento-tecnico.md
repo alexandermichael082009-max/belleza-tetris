@@ -161,7 +161,7 @@ Formato general de respuesta:
 
 | Requisito | Cumplimiento | Evidencia |
 | --------- | ------------ | --------- |
-| Repositorio Git con commits de ambos | ✅ Realizado | `git log` con los dos autores locales (Integrante 1 / Integrante 2) |
+| Repositorio Git con commits de ambos | ✅ Realizado | `git log` — 2 commits de Michael (estructura + frontend) y 2 de Jockabet (backend + gitattributes) |
 | README.md completo | ✅ | `README.md` |
 | .gitignore | ✅ | raíz del repositorio |
 | .env + .env.example | ✅ | `backend/.env.example` (+ uso en `env.js`) |
