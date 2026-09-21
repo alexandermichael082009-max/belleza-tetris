@@ -3,8 +3,8 @@ import { ThemeManager } from './modules/theme-manager.js';
 import { Chatbot } from './modules/chatbot.js';
 
 /**
- * Punto de entrada de la aplicación.
- * Crea el router, el gestor de temas, el chatbot y la navegación.
+ * Application entry point.
+ * Creates the router, the theme manager, the chatbot and the navigation.
  */
 function initialize() {
   const mainElement = document.getElementById('app-main');

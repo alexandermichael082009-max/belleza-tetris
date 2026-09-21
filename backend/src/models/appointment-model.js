@@ -1,5 +1,5 @@
 /**
- * Modelo de la entidad Cita (appointment).
+ * Model for the Appointment entity.
  */
 
 const TABLE_NAME = 'appointments';

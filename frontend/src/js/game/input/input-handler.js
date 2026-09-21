@@ -13,8 +13,8 @@ const KEY_ACTIONS = Object.freeze({
 });
 
 /**
- * Traduce eventos de teclado a acciones del juego.
- * Se registra/elimina para no acumular listeners entre partidas.
+ * Translates keyboard events into game actions.
+ * Registered/unregistered to avoid stacking listeners between games.
  */
 export class InputHandler {
   constructor(actions) {

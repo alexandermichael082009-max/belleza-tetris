@@ -2,6 +2,22 @@
 
 Proyecto integrador que combina una **aplicación comercial de un salón de belleza** (agendado de citas, catálogo de servicios con ITBIS) con un **juego de Tetris** jugable en el navegador, más un **chatbot con voz**, **temas claro/oscuro** y una **API REST por capas** en el backend.
 
+## Integrantes del equipo
+
+| Integrante   | Rol principal                     | Correo                          |
+| ------------ | --------------------------------- | ------------------------------- |
+| Michael      | Estructura, frontend y juego      | alexandermichael082009@gmail.com |
+| Jocabeth     | Backend (API REST) y calidad del código | Jocabethlinares3@gmail.com  |
+
+## Capturas de pantalla
+
+> Las capturas se guardan en `screenshots/`. Remplaza los enlaces de abajo con las imágenes reales de la aplicación en funcionamiento antes de la presentación.
+
+1. **Inicio** — ![Inicio](screenshots/inicio.png)
+2. **Agendar cita** — ![Citas](screenshots/citas.png)
+3. **Juego de Tetris** — ![Juego](screenshots/juego.png)
+4. **Puntuaciones** — ![Puntuaciones](screenshots/puntuaciones.png)
+
 ## Funcionalidades
 
 - Aplicación comercial: catálogo de servicios, precios con **ITBIS (18%)** desglosado y **agendado de citas** con validación de cliente y servidor.
@@ -41,9 +57,10 @@ Proyecto integrador que combina una **aplicación comercial de un salón de bell
 │       ├── css/             # base, layout, themes, components, game
 │       ├── js/
 │       │   ├── main.js
-│       │   ├── modules/     # router, chatbot, theme-manager, speech-service, ...
+│       │   ├── modules/     # router, chatbot, theme-manager, speech-service
+│       │   ├── views/       # home-view, appointment-form, scores-view
 │       │   ├── services/    # api-client, appointments, scores, chatbot
-│       │   ├── utils/       # constants, formatters, validators
+│       │   ├── utils/       # constants, formatters, validators, scores-render
 │       │   └── game/
 │       │       ├── engine/  # game-loop, renderer, board
 │       │       ├── entities/# piece, player

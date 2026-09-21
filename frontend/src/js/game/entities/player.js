@@ -1,7 +1,7 @@
 import { GAME } from '../../utils/constants.js';
 
 /**
- * Entidad jugador: puntuación, nivel, líneas y piezas activas.
+ * Player entity: score, level, lines and active pieces.
  */
 export class Player {
   constructor() {
@@ -12,7 +12,7 @@ export class Player {
     this.nextPiece = null;
   }
 
-  /** Reinicia el estado del jugador. */
+  /** Resets the player state. */
   reset() {
     this.score = 0;
     this.level = 1;
@@ -21,7 +21,7 @@ export class Player {
     this.nextPiece = null;
   }
 
-  /** Suma líneas limpiadas y recalcula score y nivel. */
+  /** Adds cleared lines and recomputes score and level. */
   addClearedLines(count) {
     if (count <= 0) return;
     this.lines += count;
@@ -29,7 +29,7 @@ export class Player {
     this.level = Math.floor(this.lines / GAME.LINES_PER_LEVEL) + 1;
   }
 
-  /** Intervalo de caída en ms según el nivel actual. */
+  /** Drop interval in ms based on the current level. */
   dropInterval() {
     const speedUp = (this.level - 1) * GAME.SPEED_STEP_MS;
     return Math.max(GAME.MIN_DROP_MS, GAME.INITIAL_DROP_MS - speedUp);

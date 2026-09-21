@@ -1,5 +1,5 @@
 /**
- * Escena de menú: presenta el modo de juego y sus controles.
+ * Menu scene: presents the game mode and its controls.
  */
 export class MenuScene {
   constructor(container, { onStart }) {

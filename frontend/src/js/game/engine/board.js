@@ -1,8 +1,8 @@
 import { GAME } from '../../utils/constants.js';
 
 /**
- * Representa el tablero del Tetris como matriz.
- * Guarda el colorId de cada celda fija (0 = vacía).
+ * Represents the Tetris board as a matrix.
+ * Stores the colorId of every locked cell (0 = empty).
  */
 export class Board {
   constructor() {
@@ -15,17 +15,17 @@ export class Board {
     return Array.from({ length: this.rows }, () => Array(this.cols).fill(0));
   }
 
-  /** Reinicia el tablero. */
+  /** Resets the board. */
   reset() {
     this.grid = this.#createEmptyGrid();
   }
 
   /**
-   * Indica si la pieza cabe en la posición desplazada.
+   * Indicates whether the piece fits in the shifted position.
    * @param {Piece} piece
-   * @param {number} [dx] Desplazamiento en columnas.
-   * @param {number} [dy] Desplazamiento en filas.
-   * @param {number[][]} [matrix] Matriz a evaluar (útil al rotar).
+   * @param {number} [dx] column displacement
+   * @param {number} [dy] row displacement
+   * @param {number[][]} [matrix] matrix to evaluate (useful when rotating)
    * @returns {boolean}
    */
   canPlace(piece, dx = 0, dy = 0, matrix = piece.matrix) {
@@ -40,7 +40,7 @@ export class Board {
     return true;
   }
 
-  /** Indica si una celda está dentro del tablero y vacía. */
+  /** Indicates whether a cell is inside the board and empty. */
   isFree(row, col) {
     return (
       row >= 0 &&
@@ -51,7 +51,7 @@ export class Board {
     );
   }
 
-  /** Fija una pieza en el tablero. */
+  /** Locks a piece into the board. */
   merge(piece) {
     piece.matrix.forEach((line, dy) => {
       line.forEach((value, dx) => {
@@ -63,7 +63,7 @@ export class Board {
     });
   }
 
-  /** Elimina líneas completas y devuelve cuántas se quitaron. */
+  /** Removes full lines and returns how many were cleared. */
   clearLines() {
     const remaining = this.grid.filter((row) => row.includes(0));
     const cleared = this.rows - remaining.length;

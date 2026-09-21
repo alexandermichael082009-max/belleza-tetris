@@ -6,7 +6,7 @@ const { TABLE_NAME, toEntity } = scoreModel;
 const COLUMNS = 'id, player_name, score, created_at';
 
 const scoresRepository = {
-  /** Crea una puntuación con consultas parametrizadas. */
+  /** Creates a score using parameterized queries. */
   create(data) {
     const result = getDb()
       .prepare(

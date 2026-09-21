@@ -1,7 +1,8 @@
 import { scoresService } from '../services/scores-service.js';
+import { renderScoreListHtml } from '../utils/scores-render.js';
 
 /**
- * Vista de mejores puntuaciones (leaderboard).
+ * Scores view: top score leaderboard.
  */
 export class ScoresView {
   constructor(container) {
@@ -31,18 +32,7 @@ export class ScoresView {
     try {
       const response = await scoresService.listTop();
       const scores = response.data ?? [];
-      this.listEl.innerHTML = scores.length
-        ? scores
-            .map(
-              (entry, index) => `
-                <li class="scores-list__item">
-                  <span>${index + 1}. ${entry.playerName}</span>
-                  <strong>${entry.score} pts</strong>
-                </li>
-              `,
-            )
-            .join('')
-        : "<li class='scores-list__item'>No hay puntuaciones todavía.</li>";
+      this.listEl.innerHTML = renderScoreListHtml(scores);
     } catch (error) {
       this.feedbackEl.textContent = `Error: ${error.message}`;
     }

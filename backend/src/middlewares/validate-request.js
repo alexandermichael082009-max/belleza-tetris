@@ -3,10 +3,10 @@ const httpStatus = require('../utils/http-status');
 const { failure } = require('../utils/response-builder');
 
 /**
- * Envuelve un arreglo de validaciones de express-validator y
- * responde 400 con JSON uniforme cuando fallan.
+ * Wraps an express-validator chain and answers 400 with a uniform JSON
+ * response when validation fails.
  * @param {Array} validations
- * @returns {Array} middlewares encadenados
+ * @returns {Array} chained middlewares
  */
 function validateRequest(validations) {
   return [

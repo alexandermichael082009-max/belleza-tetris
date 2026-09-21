@@ -1,15 +1,15 @@
 import { apiClient } from './api-client.js';
 
 /**
- * Servicio de puntuaciones del juego (leaderboard).
+ * Game scores service (leaderboard).
  */
 export const scoresService = {
-  /** Obtiene las mejores puntuaciones. */
+  /** Gets the top scores. */
   listTop(limit = 10) {
     return apiClient.get(`/scores?limit=${limit}`);
   },
 
-  /** Guarda una puntuación nueva. */
+  /** Saves a new score. */
   saveScore(payload) {
     return apiClient.post('/scores', payload);
   },

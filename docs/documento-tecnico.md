@@ -47,17 +47,55 @@ Flujo de una petición:
 
 ### 2.2 Frontend (por módulos)
 
-- `modules/` → controladores de vista: `router` (SPA por hash), `theme-manager`,
-  `chatbot`, `speech-service`, `appointment-form`, `home-view`, `scores-view`.
+- `modules/` → lógica de aplicación: `router` (SPA por hash), `theme-manager`, `chatbot`,
+  `speech-service`.
+- `views/` → una clase por pantalla o componente de la aplicación comercial: `home-view`,
+  `appointment-form`, `scores-view`.
 - `services/` → toda la comunicación HTTP pasa por `api-client`; los servicios de dominio
   (`appointments`, `scores`, `chatbot`) exponen un método por endpoint.
-- `utils/` → constantes (sin números mágicos), formateadores (moneda DOP, fechas, ITBIS) y
-  validadores de cliente.
+- `utils/` → constantes (sin números mágicos), formateadores (moneda DOP, fechas, ITBIS),
+  validadores de cliente y render de leaderboard compartido (`scores-render`).
 - `game/` → motor dividido en `engine` (loop, renderer, board), `entities` (pieza, jugador),
   `scenes` (menú, juego, fin de partida) e `input` (teclado + botones táctiles).
 
 El `Router` crea escenas según la ruta (`#/home`, `#/appointments`, `#/game`, `#/scores`) y
 transiciona entre ellas llamando a `mount()`/`destroy()`.
+
+### 2.3 Estructura de carpetas
+
+```
+.
+├── backend/
+│   ├── server.js                    # levanta el servidor y monta rutas/middlewares
+│   └── src/
+│       ├── config/                  # env.js, database.js (SQLite, seed)
+│       ├── routes/                  # health, appointments, scores, chatbot
+│       ├── controllers/             # reciben req/res y delegan
+│       ├── services/                # reglas de negocio
+│       ├── repositories/            # consultas parametrizadas
+│       ├── models/                  # tablas y mapeo fila → entidad
+│       ├── middlewares/             # validate-request, error-handler, not-found
+│       └── utils/                   # http-status, response-builder
+├── docs/
+│   └── documento-tecnico.md
+├── frontend/
+│   ├── index.html
+│   └── src/
+│       ├── css/                     # base, layout, themes, components, game
+│       ├── js/
+│       │   ├── main.js              # punto de entrada, solo orquesta
+│       │   ├── modules/             # router, theme-manager, chatbot, speech-service
+│       │   ├── views/               # home-view, appointment-form, scores-view
+│       │   ├── services/            # api-client, appointments, scores, chatbot
+│       │   ├── utils/               # constants, formatters, validators, scores-render
+│       │   └── game/
+│       │       ├── engine/          # game-loop, renderer, board
+│       │       ├── entities/        # piece, player
+│       │       ├── scenes/          # menu, play, game-over
+│       │       └── input/           # input-handler
+│       └── assets/
+└── screenshots/                     # capturas de la aplicación
+```
 
 ## 3. Modelo de datos
 
@@ -87,6 +125,21 @@ Base: **SQLite** (`backend/data/belleza-tetris.db`) con dos tablas.
 
 Todas las operaciones de escritura usan **consultas parametrizadas** (binding de `better-sqlite3`).
 La conexión es un **singleton** activado en modo WAL para tolerancia a lecturas concurrentes.
+
+### Diagrama (ERD)
+
+```
+appointments                         scores
+─────────────────                    ─────────────────
+int       id           PK            int       id           PK
+text      name         NOT NULL      text      player_name  NOT NULL
+text      email        NOT NULL      int       score        NOT NULL
+text      phone        NOT NULL      text      created_at   NOT NULL
+text      service      NOT NULL
+text      date         NOT NULL
+text      status       NOT NULL
+text      created_at   NOT NULL
+```
 
 ## 4. Contrato de la API
 
@@ -161,31 +214,31 @@ Formato general de respuesta:
 
 | Requisito | Cumplimiento | Evidencia |
 | --------- | ------------ | --------- |
-| Repositorio Git con commits de ambos | ✅ Realizado | `git log` — 2 commits de Michael (estructura + frontend) y 2 de Jocabeth (backend + gitattributes) |
-| README.md completo | ✅ | `README.md` |
+| Repositorio Git con commits de ambos | ✅ Realizado | `git log` — commits de Michael (estructura, frontend, docs) y Jocabeth (backend, gitattributes) |
+| README.md completo | ✅ | `README.md` (nombre, integrantes, descripción, requisitos, instalación, capturas) |
 | .gitignore | ✅ | raíz del repositorio |
 | .env + .env.example | ✅ | `backend/.env.example` (+ uso en `env.js`) |
 | Nomenclatura (kebab/camel/Pascal/UPPER) | ✅ | archivos kebab, funciones camelCase, clases PascalCase, constantes UPPER_SNAKE |
-| Un solo idioma en código (inglés) | ✅ | identificadores y respuestas de API en inglés; UI es contenido en español |
-| Frontend modular ES6 | ✅ | `frontend/src/js/{modules,services,utils,game}` |
+| Un solo idioma en código y comentarios (inglés) | ✅ | identificadores y comentarios en inglés; la UI (contenido) es en español |
+| Frontend modular ES6 | ✅ | `frontend/src/js/{modules,views,services,utils,game}` |
 | Sin `onclick`, `<style>` ni `style=""` | ✅ | eventos vía `addEventListener`; estilos en CSS |
 | Sin variables globales sueltas | ✅ | todo encapsulado en clases/módulos |
 | Fetch centralizado en `services/` | ✅ | `api-client.js`; ninguna vista usa `fetch` directo |
 | Diseño responsivo | ✅ | `@media` en `layout.css` |
 | Juego: engine, entities, scenes, input | ✅ | `frontend/src/js/game/**` |
-| App comercial: views, validación, utils (ITBIS) | ✅ | `appointment-form`, `validators`, `formatters` |
+| App comercial: views, validación, utils (ITBIS) | ✅ | `views/appointment-form`, `validators`, `formatters` |
 | Backend por capas | ✅ | `backend/src/{config,routes,controllers,services,repositories,models,middlewares,utils}` |
 | API REST plural + verbos correctos | ✅ | `/api/appointments`, `/api/scores`, etc. |
-| Códigos HTTP 200/201/400/401/404/500 | ✅ | `utils/http-status.js` + middlewares |
+| Códigos HTTP 200/201/400/401/404/500 | ✅ | `utils/http-status.js` + middlewares (401 disponible para autenticación) |
 | JSON uniforme `{success,data,message}` | ✅ | `utils/response-builder.js` |
 | Middleware global de errores | ✅ | `middlewares/error-handler.js` |
 | Validación con express-validator | ✅ | `routes/*` + `middlewares/validate-request.js` |
 | Consultas parametrizadas (SQLite) | ✅ | `repositories/*` (better-sqlite3) |
 | CORS explícito | ✅ | `server.js` |
-| Funciones ≤ 40 líneas | ✅ | revisión de estilo |
+| Funciones ≤ 40 líneas | ✅ | verificado con ESLint (`max-lines-per-function`) |
 | Archivos ≤ 300 líneas | ✅ | verificado con script de conteo |
-| Máx. 3 niveles de anidación | ✅ | revisión de estilo |
-| Sin duplicación, sin `console.log`, sin código comentado | ✅ | `process.stderr.write` en errores; lógica única por capa |
-| Sin números mágicos | ✅ | `constants.js`, `http-status.js`, `VALID_SERVICES` |
+| Máx. 3 niveles de anidación | ✅ | verificado con ESLint (`max-depth`) |
+| Sin duplicación, sin `console.log`, sin código comentado | ✅ | leaderboard compartido en `utils/scores-render.js`; `process.stderr.write` en errores |
+| Sin números mágicos | ✅ | `constants.js` (GAME/RENDERER/PRECIOS), `http-status.js`, `VALID_SERVICES` |
 | Nombres verbo+substantivo | ✅ | `listAll`, `create`, `updateById`, `saveScore`... |
 | Prettier + ESLint | ✅ | `.eslintrc.json`, `.prettierrc` |

@@ -1,6 +1,6 @@
 /**
- * Constantes globales del frontend.
- * Se usan para evitar números mágicos y strings repetidos.
+ * Global frontend constants.
+ * Used to avoid magic numbers and repeated strings.
  */
 
 export const API_BASE_URL = 'http://localhost:3000/api';
@@ -32,7 +32,7 @@ export const GAME = Object.freeze({
   POINTS_PER_LINE: 100,
 });
 
-/** Palette de las piezas. El índice 0 se deja vacío (celda sin pieza). */
+/** Piece palette. Index 0 is left empty (empty cell). */
 export const PIECE_COLORS = Object.freeze([
   '',
   '#d6336c',
@@ -43,6 +43,21 @@ export const PIECE_COLORS = Object.freeze([
   '#e8590c',
   '#e03131',
 ]);
+
+/** Canvas rendering constants (no magic numbers in the renderer). */
+export const RENDERER = Object.freeze({
+  GHOST_ALPHA: 0.25,
+  FULL_ALPHA: 1,
+  GRID_STROKE: 'rgba(128, 128, 128, 0.18)',
+  GRID_LINE_WIDTH: 1,
+  NEXT_SCALE: 0.6,
+  NEXT_SPACING: 4,
+  NEXT_TOP_ROW: 3,
+  NEXT_LABEL_OFFSET: 1.5,
+  NEXT_FONT: '12px sans-serif',
+  SURFACE_FALLBACK: '#ffffff',
+  TEXT_SOFT_FALLBACK: '#6b6b6b',
+});
 
 export const ITBIS_RATE = 0.18;
 

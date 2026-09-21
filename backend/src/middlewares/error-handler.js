@@ -2,7 +2,7 @@ const httpStatus = require('../utils/http-status');
 const { failure } = require('../utils/response-builder');
 
 /**
- * Error de aplicación con código HTTP propio.
+ * Application error carrying its own HTTP status code.
  */
 class AppError extends Error {
   constructor(status, message, data = null) {
@@ -13,7 +13,7 @@ class AppError extends Error {
 }
 
 /**
- * Middleware global de errores. Transforma cualquier error en JSON uniforme.
+ * Global error middleware. Transforms any error into a uniform JSON response.
  */
 function errorHandler(error, _req, res, _next) {
   const status = error.status || httpStatus.INTERNAL_SERVER_ERROR;

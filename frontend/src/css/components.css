@@ -1,4 +1,4 @@
-/* Componentes reutilizables: botones, tarjetas, formularios, chatbot. */
+/* Reusable components: buttons, cards, forms, chatbot. */
 .app-nav__btn,
 .theme-toggle,
 .chatbot-toggle,
@@ -61,7 +61,7 @@
   font-weight: 600;
 }
 
-/* Lista de precios del inicio */
+/* Home service price list */
 .home-services {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -76,7 +76,7 @@
   text-align: center;
 }
 
-/* Lista de puntuaciones */
+/* Score list */
 .scores-list {
   display: flex;
   flex-direction: column;

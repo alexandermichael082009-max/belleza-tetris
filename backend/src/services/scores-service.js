@@ -6,13 +6,13 @@ const DEFAULT_LIMIT = 10;
 const MAX_LIMIT = 50;
 
 const scoresService = {
-  /** Devuelve las mejores puntuaciones con un límite acotado. */
+  /** Returns the top scores within a bounded limit. */
   listTop(limit) {
     const safeLimit = Math.min(Math.max(Number(limit) || DEFAULT_LIMIT, 1), MAX_LIMIT);
     return scoresRepository.findTop(safeLimit);
   },
 
-  /** Guarda una puntuación validando que sea positiva. */
+  /** Saves a score after validating it is positive. */
   saveScore(data) {
     const score = Math.floor(Number(data.score) || 0);
     if (score <= 0) {

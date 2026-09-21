@@ -1,7 +1,7 @@
-import { GAME, PIECE_COLORS } from '../../utils/constants.js';
+import { GAME, PIECE_COLORS, RENDERER } from '../../utils/constants.js';
 
 /**
- * Renderizador en Canvas del tablero, pieza activa, fantasma, rejilla y siguiente pieza.
+ * Canvas renderer for the board, active piece, ghost, grid and next piece.
  */
 export class Renderer {
   constructor(canvas) {
@@ -21,7 +21,7 @@ export class Renderer {
   }
 
   #clear() {
-    this.ctx.fillStyle = this.#cssVar('--color-surface') || '#ffffff';
+    this.ctx.fillStyle = this.#cssVar('--color-surface') || RENDERER.SURFACE_FALLBACK;
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
@@ -41,9 +41,9 @@ export class Renderer {
     piece.matrix.forEach((line, dy) => {
       line.forEach((value, dx) => {
         if (value === 0) return;
-        this.ctx.globalAlpha = 0.25;
+        this.ctx.globalAlpha = RENDERER.GHOST_ALPHA;
         this.#drawCell(piece.x + dx, piece.y + dy + drop, color);
-        this.ctx.globalAlpha = 1;
+        this.ctx.globalAlpha = RENDERER.FULL_ALPHA;
       });
     });
   }
@@ -59,10 +59,9 @@ export class Renderer {
   }
 
   #drawGridLines() {
-    this.ctx.strokeStyle = 'rgba(128, 128, 128, 0.18)';
-    this.ctx.lineWidth = 1;
+    this.ctx.strokeStyle = RENDERER.GRID_STROKE;
+    this.ctx.lineWidth = RENDERER.GRID_LINE_WIDTH;
     for (let x = 1; x < GAME.COLS; x += 1) {
-      // Líneas verticales por columna.
       this.ctx.beginPath();
       this.ctx.moveTo(x * GAME.BLOCK_SIZE, 0);
       this.ctx.lineTo(x * GAME.BLOCK_SIZE, this.canvas.height);
@@ -77,14 +76,18 @@ export class Renderer {
   }
 
   #drawNext(piece) {
-    const size = Math.round(GAME.BLOCK_SIZE * 0.6);
-    const label = this.#cssVar('--color-text-soft') || '#6b6b6b';
+    const size = Math.round(GAME.BLOCK_SIZE * RENDERER.NEXT_SCALE);
+    const label = this.#cssVar('--color-text-soft') || RENDERER.TEXT_SOFT_FALLBACK;
     this.ctx.fillStyle = label;
-    this.ctx.font = '12px sans-serif';
-    const startX = this.canvas.width - size * 4 - GAME.BLOCK_SIZE;
-    const startY = GAME.BLOCK_SIZE * 3;
+    this.ctx.font = RENDERER.NEXT_FONT;
+    const startX = this.canvas.width - size * RENDERER.NEXT_SPACING - GAME.BLOCK_SIZE;
+    const startY = GAME.BLOCK_SIZE * RENDERER.NEXT_TOP_ROW;
 
-    this.ctx.fillText('Siguiente', startX, startY - GAME.BLOCK_SIZE * 1.5);
+    this.ctx.fillText(
+      'Siguiente',
+      startX,
+      startY - GAME.BLOCK_SIZE * RENDERER.NEXT_LABEL_OFFSET,
+    );
     const color = PIECE_COLORS[piece.colorId];
     piece.matrix.forEach((line, dy) => {
       line.forEach((value, dx) => {
@@ -105,7 +108,7 @@ export class Renderer {
     );
   }
 
-  /** Lee una variable CSS del documento (para adaptar el canvas al tema). */
+  /** Reads a CSS variable from the document (to adapt the canvas to the theme). */
   #cssVar(name) {
     return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   }

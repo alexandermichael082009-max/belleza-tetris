@@ -6,7 +6,7 @@ const { TABLE_NAME, toEntity } = appointmentModel;
 const COLUMNS = 'id, name, email, phone, service, date, status, created_at';
 
 const appointmentsRepository = {
-  /** Crea una cita con consultas parametrizadas. */
+  /** Creates an appointment using parameterized queries. */
   create(data) {
     const result = getDb()
       .prepare(

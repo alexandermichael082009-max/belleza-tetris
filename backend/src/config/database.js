@@ -8,7 +8,7 @@ const scoreModel = require('../models/score-model');
 let connection = null;
 
 /**
- * Devuelve la conexión única a SQLite (singleton con modo WAL).
+ * Returns the single SQLite connection (WAL-mode singleton).
  */
 function getDb() {
   if (!connection) {
@@ -23,7 +23,7 @@ function getDb() {
 }
 
 /**
- * Crea las tablas si no existen y siembra datos iniciales.
+ * Creates the tables if missing and seeds initial data.
  */
 function seedDatabase() {
   const db = getDb();

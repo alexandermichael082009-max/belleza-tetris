@@ -2,7 +2,7 @@ import { SERVICE_PRICES, ROUTES } from '../utils/constants.js';
 import { formatCurrency, getServiceLabel } from '../utils/formatters.js';
 
 /**
- * Vista de inicio: presentación del salón y catálogo de servicios.
+ * Home view: salon presentation and service catalog.
  */
 export class HomeView {
   constructor(container, router) {

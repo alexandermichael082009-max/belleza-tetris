@@ -1,5 +1,5 @@
 /**
- * Construye la respuesta JSON uniforme { success, data, message }.
+ * Builds the uniform JSON response { success, data, message }.
  */
 
 function success(data = null, message = 'Operación exitosa.') {

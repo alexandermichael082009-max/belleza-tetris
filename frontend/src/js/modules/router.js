@@ -1,14 +1,14 @@
 import { ROUTES } from '../utils/constants.js';
-import { HomeView } from './home-view.js';
-import { AppointmentForm } from './appointment-form.js';
-import { ScoresView } from './scores-view.js';
+import { HomeView } from '../views/home-view.js';
+import { AppointmentForm } from '../views/appointment-form.js';
+import { ScoresView } from '../views/scores-view.js';
 import { MenuScene } from '../game/scenes/menu-scene.js';
 import { PlayScene } from '../game/scenes/play-scene.js';
 import { GameOverScene } from '../game/scenes/game-over-scene.js';
 
 /**
- * Router por hash de la SPA.
- * Construye una escena por ruta y transiciona llamando mount/destroy.
+ * Hash router for the SPA.
+ * Builds a scene per route and transitions by calling mount/destroy.
  */
 export class Router {
   constructor(main) {
@@ -16,13 +16,13 @@ export class Router {
     this.currentScene = null;
   }
 
-  /** Registra el listener de hashchange y renderiza la ruta inicial. */
+  /** Registers the hashchange listener and renders the initial route. */
   init() {
     window.addEventListener('hashchange', () => this.#renderFromHash());
     this.#renderFromHash();
   }
 
-  /** Navega a una ruta actualizando el hash. */
+  /** Navigates to a route by updating the hash. */
   navigate(route) {
     const target = `#/${route}`;
     if (window.location.hash === target) {
@@ -32,7 +32,7 @@ export class Router {
     }
   }
 
-  /** Sustituye la escena actual por una nueva. */
+  /** Replaces the current scene with a new one. */
   transition(scene) {
     if (this.currentScene?.destroy) this.currentScene.destroy();
     this.currentScene = scene;

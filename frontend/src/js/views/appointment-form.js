@@ -15,16 +15,28 @@ const SERVICE_OPTIONS = Object.entries(SERVICE_PRICES)
   .join('');
 
 /**
- * Controla la vista de agendado de citas: validación, envío y resumen de precios.
+ * Controls the appointment view: validation, submit and price summary.
  */
 export class AppointmentForm {
   constructor(container) {
     this.container = container;
   }
 
-  /** Renderiza la vista de citas y registra eventos. */
+  /** Renders the appointment view and registers events. */
   render() {
-    this.container.innerHTML = `
+    this.container.innerHTML = this.#formTemplate();
+    this.form = this.container.querySelector('#appointment-form');
+    this.totalEl = this.container.querySelector('#appt-total');
+    this.feedbackEl = this.container.querySelector('#appt-feedback');
+    this.form.addEventListener('submit', (e) => this.#handleSubmit(e));
+    this.form
+      .querySelector('#appt-service')
+      .addEventListener('change', (e) => this.#updateTotal(e.target.value));
+  }
+
+  /** Builds the appointment form markup. */
+  #formTemplate() {
+    return `
       <section class="card">
         <h2>Agendar cita</h2>
         <form id="appointment-form" novalidate>
@@ -62,14 +74,6 @@ export class AppointmentForm {
         </form>
       </section>
     `;
-
-    this.form = this.container.querySelector('#appointment-form');
-    this.totalEl = this.container.querySelector('#appt-total');
-    this.feedbackEl = this.container.querySelector('#appt-feedback');
-    this.form.addEventListener('submit', (e) => this.#handleSubmit(e));
-    this.form
-      .querySelector('#appt-service')
-      .addEventListener('change', (e) => this.#updateTotal(e.target.value));
   }
 
   #updateTotal(serviceKey) {

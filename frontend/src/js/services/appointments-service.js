@@ -1,25 +1,25 @@
 import { apiClient } from './api-client.js';
 
 /**
- * Servicio de citas. Una función por cada punto de acceso del backend.
+ * Appointments service. One function per backend endpoint.
  */
 export const appointmentsService = {
-  /** Lista todas las citas. */
+  /** Lists all appointments. */
   listAll() {
     return apiClient.get('/appointments');
   },
 
-  /** Crea una nueva cita. */
+  /** Creates a new appointment. */
   create(payload) {
     return apiClient.post('/appointments', payload);
   },
 
-  /** Actualiza una cita existente. */
+  /** Updates an existing appointment. */
   update(id, payload) {
     return apiClient.put(`/appointments/${id}`, payload);
   },
 
-  /** Elimina una cita. */
+  /** Removes an appointment. */
   remove(id) {
     return apiClient.delete(`/appointments/${id}`);
   },

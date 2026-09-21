@@ -1,5 +1,5 @@
 /**
- * Modelo de la entidad Puntuación (score).
+ * Model for the Score entity.
  */
 
 const TABLE_NAME = 'scores';

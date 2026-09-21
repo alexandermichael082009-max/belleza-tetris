@@ -1,6 +1,6 @@
 /**
- * Servicio de voz usando Web Speech API.
- * Se aísla aquí para no depender directamente de window.speechSynthesis en el chatbot.
+ * Voice service using the Web Speech API.
+ * Isolated here so the chatbot does not depend directly on window.speechSynthesis.
  */
 export class SpeechService {
   constructor() {
@@ -11,18 +11,18 @@ export class SpeechService {
     this.enabled = true;
   }
 
-  /** Activa o desactiva la voz. */
+  /** Enables or disables the voice output. */
   setEnabled(enabled) {
     this.enabled = enabled;
   }
 
-  /** Indica si la voz está activa. */
+  /** Indicates whether the voice is enabled. */
   isEnabled() {
     return this.enabled;
   }
 
   /**
-   * Reproduce un texto por voz.
+   * Speaks a text aloud.
    * @param {string} text
    */
   speak(text) {

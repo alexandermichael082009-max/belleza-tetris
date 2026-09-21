@@ -4,18 +4,18 @@ const appointmentModel = require('../models/appointment-model');
 const appointmentsRepository = require('../repositories/appointments-repository');
 
 const appointmentsService = {
-  /** Lista todas las citas. */
+  /** Lists all appointments. */
   listAll() {
     return appointmentsRepository.findAll();
   },
 
-  /** Crea una cita asignando el estado por defecto. */
+  /** Creates an appointment with the default status. */
   create(data) {
     const appointment = { ...data, status: appointmentModel.DEFAULT_STATUS };
     return appointmentsRepository.create(appointment);
   },
 
-  /** Actualiza una cita; valida que exista. */
+  /** Updates an appointment after checking it exists. */
   updateById(id, data) {
     const existing = appointmentsRepository.findById(id);
     if (!existing) {
@@ -24,7 +24,7 @@ const appointmentsService = {
     return appointmentsRepository.update(id, data);
   },
 
-  /** Elimina una cita; valida que exista. */
+  /** Removes an appointment after checking it exists. */
   removeById(id) {
     const existing = appointmentsRepository.findById(id);
     if (!existing) {

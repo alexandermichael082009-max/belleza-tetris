@@ -1,7 +1,7 @@
 import { THEMES, STORAGE_KEYS } from '../utils/constants.js';
 
 /**
- * Gestiona el cambio de tema (claro / oscuro) y su persistencia.
+ * Manages the light/dark theme switch and its persistence.
  */
 export class ThemeManager {
   constructor(toggleButton) {
@@ -9,19 +9,19 @@ export class ThemeManager {
     this.currentTheme = this.#loadTheme();
   }
 
-  /** Inicializa el tema y registra el evento del botón. */
+  /** Initializes the theme and registers the toggle event. */
   init() {
     this.#applyTheme(this.currentTheme);
     this.toggleButton.addEventListener('click', () => this.toggle());
   }
 
-  /** Alterna entre claro y oscuro. */
+  /** Switches between light and dark. */
   toggle() {
     const next = this.currentTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT;
     this.#applyTheme(next);
   }
 
-  /** Aplica el tema al DOM y lo guarda en localStorage. */
+  /** Applies the theme to the DOM and stores it in localStorage. */
   #applyTheme(theme) {
     this.currentTheme = theme;
     document.documentElement.setAttribute('data-theme', theme);
@@ -29,7 +29,7 @@ export class ThemeManager {
     localStorage.setItem(STORAGE_KEYS.THEME, theme);
   }
 
-  /** Recupera el tema guardado o detecta preferencia del sistema. */
+  /** Loads the stored theme or detects the system preference. */
   #loadTheme() {
     const stored = localStorage.getItem(STORAGE_KEYS.THEME);
     if (stored) return stored;

@@ -43,7 +43,7 @@ const RULES = [
 
 const chatbotService = {
   /**
-   * Genera una respuesta según palabras clave del mensaje.
+   * Builds a reply based on keywords found in the message.
    * @param {string} message
    * @returns {string}
    */

@@ -2,7 +2,7 @@ const httpStatus = require('../utils/http-status');
 const { failure } = require('../utils/response-builder');
 
 /**
- * Middleware para rutas inexistentes.
+ * Middleware for unmatched routes.
  */
 function notFound(req, res) {
   return res

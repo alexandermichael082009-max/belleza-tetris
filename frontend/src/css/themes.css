@@ -1,4 +1,4 @@
-/* Variables de color para modo claro y oscuro. */
+/* Color variables for light and dark themes. */
 :root,
 [data-theme='light'] {
   --color-bg: #fdf6f9;

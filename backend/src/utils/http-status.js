@@ -1,6 +1,6 @@
 /**
- * Códigos de estado HTTP usados por la API.
- * Centralizados para evitar números mágicos.
+ * HTTP status codes used by the API.
+ * Centralized to avoid magic numbers.
  */
 module.exports = Object.freeze({
   OK: 200,

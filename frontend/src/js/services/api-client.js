@@ -1,12 +1,12 @@
 import { API_BASE_URL } from '../utils/constants.js';
 
 /**
- * Cliente HTTP centralizado. Toda comunicación con el backend pasa por aquí.
- * Ninguna vista hace fetch directo.
+ * Centralized HTTP client. All backend communication goes through here.
+ * No view performs a direct fetch.
  */
 export const apiClient = {
   /**
-   * Realiza una petición HTTP y normaliza la respuesta.
+   * Performs an HTTP request and normalizes the response.
    * @param {string} endpoint
    * @param {RequestInit} [options]
    * @returns {Promise<{success: boolean, data: any, message: string}>}

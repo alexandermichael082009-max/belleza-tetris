@@ -2,7 +2,7 @@ import { chatbotService } from '../services/chatbot-service.js';
 import { SpeechService } from './speech-service.js';
 
 /**
- * Controla el panel del chatbot: apertura, envío de mensajes y voz.
+ * Controls the chatbot panel: opening, message submission and voice.
  */
 export class Chatbot {
   constructor() {
@@ -17,7 +17,7 @@ export class Chatbot {
     this.voiceEnabled = true;
   }
 
-  /** Inicializa eventos del chatbot. */
+  /** Initializes the chatbot events. */
   init() {
     this.toggleButton.addEventListener('click', () => this.#togglePanel());
     this.closeButton.addEventListener('click', () => this.#closePanel());

@@ -1,8 +1,8 @@
 import { GAME } from '../../utils/constants.js';
 
 /**
- * Definiciones de las 7 piezas estándar del Tetris.
- * colorId es índice de PIECE_COLORS (1..7).
+ * Definitions of the 7 standard Tetris pieces.
+ * colorId is an index into PIECE_COLORS (1..7).
  */
 const SHAPES = Object.freeze({
   I: Object.freeze({ colorId: 1, matrix: Object.freeze([[1, 1, 1, 1]]) }),
@@ -53,7 +53,7 @@ const SHAPES = Object.freeze({
 const PIECE_TYPES = Object.keys(SHAPES);
 
 /**
- * Entidad pieza: forma, color y posición en el tablero.
+ * Piece entity: shape, color and position on the board.
  */
 export class Piece {
   constructor(type) {
@@ -65,13 +65,13 @@ export class Piece {
     this.y = 0;
   }
 
-  /** Crea una pieza aleatoria. */
+  /** Creates a random piece. */
   static random() {
     const type = PIECE_TYPES[Math.floor(Math.random() * PIECE_TYPES.length)];
     return new Piece(type);
   }
 
-  /** Devuelve la matriz rotada 90° a la derecha (no muta esta pieza). */
+  /** Returns the matrix rotated 90° clockwise (does not mutate this piece). */
   rotatedMatrix() {
     return this.matrix[0].map((_, col) => this.matrix.map((row) => row[col]).reverse());
   }

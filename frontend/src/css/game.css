@@ -1,4 +1,4 @@
-/* Estilos del canvas, HUD y menú del juego. */
+/* Styles for the canvas, HUD and game menu. */
 .game-wrapper {
   display: flex;
   flex-direction: column;
@@ -45,7 +45,7 @@
   filter: brightness(1.15);
 }
 
-/* Menú del juego y fin de partida */
+/* Game menu and game over */
 .game-menu {
   text-align: center;
 }

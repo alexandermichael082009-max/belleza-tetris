@@ -4,9 +4,9 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_REGEX = /^[0-9+\-\s]{7,15}$/;
 
 /**
- * Valida los datos del formulario de citas en el cliente.
+ * Validates the appointment form data on the client.
  * @param {{name: string, email: string, phone: string, service: string, date: string}} data
- * @returns {Object<string, string>} Errores por campo (vacío si todo ok).
+ * @returns {Object<string, string>} errors per field (empty if valid)
  */
 export function validateAppointmentForm(data) {
   const errors = {};
@@ -31,7 +31,7 @@ export function validateAppointmentForm(data) {
 }
 
 /**
- * Indica si un objeto de errores está vacío.
+ * Indicates whether an errors object is empty.
  * @param {Object} errors
  * @returns {boolean}
  */

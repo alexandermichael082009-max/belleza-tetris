@@ -1,8 +1,9 @@
 import { scoresService } from '../../services/scores-service.js';
+import { renderScoreListHtml } from '../../utils/scores-render.js';
 
 /**
- * Escena de fin de partida: muestra el resultado, guarda la puntuación
- * y renderiza el top de puntuaciones.
+ * Game-over scene: shows the result, saves the score
+ * and renders the top leaderboard.
  */
 export class GameOverScene {
   constructor(container, { finalState, onReplay, onMenu }) {
@@ -72,16 +73,7 @@ export class GameOverScene {
     try {
       const response = await scoresService.listTop();
       const scores = response.data ?? [];
-      this.leaderboardEl.innerHTML = scores
-        .map(
-          (entry, index) => `
-            <li class="scores-list__item">
-              <span>${index + 1}. ${entry.playerName}</span>
-              <strong>${entry.score} pts</strong>
-            </li>
-          `,
-        )
-        .join('');
+      this.leaderboardEl.innerHTML = renderScoreListHtml(scores);
     } catch {
       this.leaderboardEl.innerHTML = '';
     }

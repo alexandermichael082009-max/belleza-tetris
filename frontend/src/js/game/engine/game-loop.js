@@ -1,6 +1,6 @@
 /**
- * Bucle principal del juego basado en requestAnimationFrame.
- * Llama al callback con el timestamp de cada fotograma.
+ * Main game loop based on requestAnimationFrame.
+ * Calls the callback with the timestamp of each frame.
  */
 export class GameLoop {
   constructor(callback) {
@@ -9,14 +9,14 @@ export class GameLoop {
     this.animationFrame = null;
   }
 
-  /** Inicia el bucle. */
+  /** Starts the loop. */
   start() {
     if (this.running) return;
     this.running = true;
     this.#step(performance.now());
   }
 
-  /** Detiene el bucle. */
+  /** Stops the loop. */
   stop() {
     this.running = false;
     if (this.animationFrame !== null) {

@@ -1,7 +1,7 @@
 import { ITBIS_RATE, SERVICE_PRICES, SERVICE_LABELS } from './constants.js';
 
 /**
- * Formatea un número como moneda dominicana (DOP).
+ * Formats a number as Dominican currency (DOP).
  * @param {number} amount
  * @returns {string}
  */
@@ -13,7 +13,7 @@ export function formatCurrency(amount) {
 }
 
 /**
- * Formatea una fecha ISO a formato local legible.
+ * Formats an ISO date into a readable local format.
  * @param {string} isoDate
  * @returns {string}
  */
@@ -26,8 +26,8 @@ export function formatDate(isoDate) {
 }
 
 /**
- * Calcula subtotal, ITBIS y total de un servicio.
- * Centralizado aquí para no duplicar lógica en vistas.
+ * Computes subtotal, ITBIS and total for a service.
+ * Centralized here so views do not duplicate the logic.
  * @param {string} serviceKey
  * @returns {{subtotal: number, itbis: number, total: number}}
  */
@@ -38,7 +38,7 @@ export function calculateServiceTotals(serviceKey) {
 }
 
 /**
- * Devuelve la etiqueta legible de un servicio.
+ * Returns the human-readable label of a service.
  * @param {string} serviceKey
  * @returns {string}
  */

@@ -6,7 +6,7 @@ import { Player } from '../entities/player.js';
 import { Piece } from '../entities/piece.js';
 
 /**
- * Escena de juego: coordina tablero, renderer, input y bucle.
+ * Play scene: coordinates board, renderer, input and loop.
  */
 export class PlayScene {
   constructor(container, { onGameOver }) {
@@ -18,31 +18,7 @@ export class PlayScene {
   }
 
   mount() {
-    this.container.innerHTML = `
-      <section class="game-wrapper">
-        <div class="game-hud">
-          <p>Puntos: <span id="game-score">0</span></p>
-          <p>Nivel: <span id="game-level">1</span></p>
-          <p>Líneas: <span id="game-lines">0</span></p>
-        </div>
-        <canvas id="game-canvas" class="game-canvas" aria-label="Tablero de Tetris"></canvas>
-        <div class="game-controls">
-          <button data-action="left" aria-label="Mover a la izquierda">←</button>
-          <button data-action="rotate" aria-label="Rotar pieza">↻</button>
-          <button data-action="right" aria-label="Mover a la derecha">→</button>
-          <button data-action="down" aria-label="Bajar">↓</button>
-          <button data-action="drop" aria-label="Soltar pieza">⤓</button>
-          <button data-action="pause" aria-label="Pausar">Pausa</button>
-        </div>
-      </section>
-    `;
-
-    this.canvas = this.container.querySelector('#game-canvas');
-    this.scoreEl = this.container.querySelector('#game-score');
-    this.levelEl = this.container.querySelector('#game-level');
-    this.linesEl = this.container.querySelector('#game-lines');
-    this.pauseButton = this.container.querySelector('[data-action="pause"]');
-
+    this.#buildLayout();
     this.board = new Board();
     this.renderer = new Renderer(this.canvas);
     this.player = new Player();
@@ -68,6 +44,34 @@ export class PlayScene {
   destroy() {
     this.loop?.stop();
     this.input?.unregister();
+  }
+
+  /** Builds the game HTML layout and keeps references to it. */
+  #buildLayout() {
+    this.container.innerHTML = `
+      <section class="game-wrapper">
+        <div class="game-hud">
+          <p>Puntos: <span id="game-score">0</span></p>
+          <p>Nivel: <span id="game-level">1</span></p>
+          <p>Líneas: <span id="game-lines">0</span></p>
+        </div>
+        <canvas id="game-canvas" class="game-canvas" aria-label="Tablero de Tetris"></canvas>
+        <div class="game-controls">
+          <button data-action="left" aria-label="Mover a la izquierda">←</button>
+          <button data-action="rotate" aria-label="Rotar pieza">↻</button>
+          <button data-action="right" aria-label="Mover a la derecha">→</button>
+          <button data-action="down" aria-label="Bajar">↓</button>
+          <button data-action="drop" aria-label="Soltar pieza">⤓</button>
+          <button data-action="pause" aria-label="Pausar">Pausa</button>
+        </div>
+      </section>
+    `;
+
+    this.canvas = this.container.querySelector('#game-canvas');
+    this.scoreEl = this.container.querySelector('#game-score');
+    this.levelEl = this.container.querySelector('#game-level');
+    this.linesEl = this.container.querySelector('#game-lines');
+    this.pauseButton = this.container.querySelector('[data-action="pause"]');
   }
 
   #bindControlButtons() {
