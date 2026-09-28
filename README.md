@@ -53,6 +53,7 @@ Proyecto integrador que combina una **aplicación comercial de un salón de bell
 │   └── documento-tecnico.md
 ├── frontend/                # SPA (ES modules)
 │   ├── index.html
+│   ├── static-server.js     # servidor estático de desarrollo
 │   └── src/
 │       ├── css/             # base, layout, themes, components, game
 │       ├── js/
@@ -77,6 +78,12 @@ Proyecto integrador que combina una **aplicación comercial de un salón de bell
 
 ## Puesta en marcha
 
+### 0. Forma rápida (Windows)
+
+Doble clic en **`start-dev.bat`** (raíz del repositorio). Abre dos ventanas: la API en
+`http://localhost:3000` y el frontend en `http://localhost:5500`. Cierra esas ventanas para
+detener los servidores.
+
 ### 1. Backend
 
 ```bash
@@ -90,7 +97,15 @@ El servidor queda en `http://localhost:3000` y crea automáticamente la base SQL
 
 ### 2. Frontend
 
-Abre la carpeta `frontend/` con un servidor estático en el puerto **5500** (ej. Live Server de VS Code) y visita `http://localhost:5500`.
+Abre la carpeta `frontend/` con un servidor estático en el puerto **5500** e visita
+`http://localhost:5500`. El repositorio incluye uno propio:
+
+```bash
+cd frontend
+node static-server.js . 5500
+```
+
+También vale cualquier otro (ej. Live Server de VS Code).
 
 > El frontend no debe abrirse con `file://`: los ES modules y `fetch` requieren un servidor HTTP. El origen permitido por CORS por defecto es `http://localhost:5500`.
 

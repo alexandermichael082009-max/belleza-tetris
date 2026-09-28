@@ -30,3 +30,5 @@ Thumbs.db
 # Builds y cobertura
 dist/
 coverage/
+desktop/node_modules/
+desktop/dist/
