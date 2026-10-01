@@ -8,3 +8,4 @@
 *.woff binary
 *.woff2 binary
 *.ttf binary
+*.mp4 filter=lfs diff=lfs merge=lfs -text
